@@ -3,6 +3,7 @@ let scale = 10;
 let graphic;
 let drawButton, eraseButton;
 let drawingRadius;
+let modelRunning = false;
 
 function setDrawing() {
     graphic.fill(255);
@@ -85,6 +86,10 @@ function maxIndex(arr) {
 
 
 async function predict() {
+    if (modelRunning) {
+        return null;
+    }
+    modelRunning = true;
     const imageData = [];
     for (let j = 0; j < height; j += scale) {
         for (let i = 0; i < width; i += scale) {
@@ -129,7 +134,7 @@ async function predict() {
         console.error(error);
     }
     console.log("post");
-
+    modelRunning = false;
 }
 
 async function loadModel() {
