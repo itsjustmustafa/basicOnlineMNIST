@@ -3,7 +3,6 @@ let scale = 10;
 let graphic;
 let drawButton, eraseButton;
 let drawingRadius;
-let modelRunning = false;
 
 function setDrawing() {
     graphic.fill(255);
@@ -55,16 +54,13 @@ const compute = async (tensor) => {
 };
 
 
-async function mouseDragged(event) {
+function mouseDragged(event) {
     mouseDist = max(abs(movedX), abs(movedY));
     for (let i = 0; i < mouseDist; i += scale * 0.3) {
         mouseLerpX = map(i, 0, mouseDist, mouseX, pmouseX);
         mouseLerpY = map(i, 0, mouseDist, mouseY, pmouseY);
         // graphic.fill(255);
         graphic.ellipse(mouseLerpX / scale, mouseLerpY / scale, drawingRadius);
-    }
-    if (mouseX < width && mouseX > 0 && mouseY < height && mouseY > 0) {
-        await predict();
     }
 }
 
@@ -86,10 +82,6 @@ function maxIndex(arr) {
 
 
 async function predict() {
-    if (modelRunning) {
-        return null;
-    }
-    modelRunning = true;
     const imageData = [];
     for (let j = 0; j < height; j += scale) {
         for (let i = 0; i < width; i += scale) {
@@ -134,7 +126,7 @@ async function predict() {
         console.error(error);
     }
     console.log("post");
-    modelRunning = false;
+
 }
 
 async function loadModel() {
