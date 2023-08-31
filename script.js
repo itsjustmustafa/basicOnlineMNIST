@@ -54,7 +54,7 @@ const compute = async (tensor) => {
 };
 
 
-function mouseDragged(event) {
+async function mouseDragged(event) {
     mouseDist = max(abs(movedX), abs(movedY));
     for (let i = 0; i < mouseDist; i += scale * 0.3) {
         mouseLerpX = map(i, 0, mouseDist, mouseX, pmouseX);
@@ -63,7 +63,7 @@ function mouseDragged(event) {
         graphic.ellipse(mouseLerpX / scale, mouseLerpY / scale, drawingRadius);
     }
     if (mouseX < width && mouseX > 0 && mouseY < height && mouseY > 0) {
-        predict();
+        await predict();
     }
 }
 
