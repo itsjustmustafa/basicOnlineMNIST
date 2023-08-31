@@ -62,6 +62,9 @@ function mouseDragged(event) {
         // graphic.fill(255);
         graphic.ellipse(mouseLerpX / scale, mouseLerpY / scale, drawingRadius);
     }
+    if (mouseX < width && mouseX > 0 && mouseY < height && mouseY > 0) {
+        predict();
+    }
 }
 
 function mouseReleased() {
