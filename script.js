@@ -130,7 +130,7 @@ async function predict() {
 }
 
 async function loadModel() {
-    model = await tf.loadLayersModel('models/mnist_tfjs_model/model.json');
+    model = await tf.loadLayersModel('models/mnist_tfjs_model2/model.json');
     model.summary();
 }
 loadModel();
