@@ -4,6 +4,8 @@ let graphic;
 let drawButton, eraseButton;
 let drawingRadius;
 
+// Update - training more on model 2
+
 function setDrawing() {
     graphic.fill(255);
     drawButton.style = "background: rgb(50,50,50);"
